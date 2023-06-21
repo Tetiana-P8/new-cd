@@ -3,76 +3,76 @@
 
 
 
-// let numberOfFilms;
-
-// function start() {
-// 	numberOfFilms = +prompt('Сколько фильмов вы посмотрели?', '').trim();
-
-// 	while (numberOfFilms == '' || numberOfFilms == null || isNaN(numberOfFilms)) {
-// 		numberOfFilms = +prompt('Сколько фильмов вы посмотрели?', '');
-// 	}
-// }
-
-// start();
-
-// const personalMovieDB = {
-// 	count: numberOfFilms,
-// 	movies: {},
-// 	actors: {},
-// 	genres: [],
-// 	privat: false
-// };
 
 
+const personalMovieDB = {
+	count: 0,
+	movies: {},
+	actors: {},
+	genres: [],
+	privat: false,
+	start: function() {
+		personalMovieDB.count = +prompt('Сколько фильмов вы посмотрели?', '').trim();
 
-// function whiteYourGenres() {
-// 	for (let i = 1; i <= 3; i++) {
-// 		personalMovieDB.genres[i-1] = prompt(`Ваш любимый жанр под номером ${i}`, '');
-// 	}
+		while (personalMovieDB.count == '' || personalMovieDB.count == null || isNaN(personalMovieDB.count)) {
+			personalMovieDB.count = +prompt('Сколько фильмов вы посмотрели?', '');
+		}
+	},
+	rememberMyFilms: function() {
+		for (let i = 0; i < 2; i++) {
+			const a = prompt('Один из последних просмотренных фильмов?', ''),
+				b = prompt('На сколько оцениваете фильм?', '');
 
-// }
-// whiteYourGenres();
+			if (a != null && b != null && a!= '' && b!= '' && a.length < 50) {
+				personalMovieDB.movies[a] = b;
+				console.log('done');
+			} else {
+				console.log('err');
+				i--;
+			}
+		}
+	},
+	detectPersonalLevel: function() {
+		if (personalMovieDB.count < 10) {
+			console.log('Просмотрено довольно мало фильмов');
+		} else if (personalMovieDB.count >= 10 && personalMovieDB.count < 30) {
+			console.log('Вы классический зритель');
+		} else if ( personalMovieDB.count >= 30) {
+			console.log('Вы киноман');
+		} else  {
+			console.log('Err');
+		}
+	},
+	whiteYourGenres: function() {
+		for (let i = 1; i <= 3; i++) {
+			let genres = prompt(`Ваш любимый жанр под номером ${i}`, '');
+
+			if(genres === '' || genres == null) {
+				console.log('Вы ввели некорректные данные или не ввели вообще');
+			}
+			personalMovieDB.genres[i-1]  = genres;
+		}
+		personalMovieDB.genres.forEach((item, i) => {
+			console.log(`Любимый жанр ${i + 1} - это ${item}`);
+		});
+	},
+	toggleVisibleMyDB: function() {
+		if (personalMovieDB.privat) {
+			personalMovieDB.privat = false;
+
+		} else {
+			personalMovieDB.privat = true;
+		}
+	},
+	showMyDB: function(hidden) {
+		if (!hidden) {
+			console.log(personalMovieDB);
+		}
+	}
+};
 
 
 
-// function rememberMyFilms() {
-// 	for (let i = 0; i < 2; i++) {
-// 		const a = prompt('Один из последних просмотренных фильмов?', ''),
-// 			b = prompt('На сколько оцениваете фильм?', '');
-
-// 		if (a != null && b != null && a!= '' && b!= '' && a.length < 50) {
-// 			personalMovieDB.movies[a] = b;
-// 			console.log('done');
-// 		} else {
-// 			console.log('err');
-// 			i--;
-// 		}
-// 	}
-// }
-// rememberMyFilms();
-
-
-// function detectPersonalLevel() {
-// 	if (personalMovieDB.count < 10) {
-// 		console.log('Просмотрено довольно мало фильмов');
-// 	} else if (personalMovieDB.count >= 10 && personalMovieDB.count < 30) {
-// 		console.log('Вы классический зритель');
-// 	} else if ( personalMovieDB.count >= 30) {
-// 		console.log('Вы киноман');
-// 	} else  {
-// 		console.log('Err');
-// 	}
-// }
-
-// detectPersonalLevel();
-
-// function showMyDB(hidden) {
-// 	if (!hidden) {
-// 		console.log(personalMovieDB);
-// 	}
-// }
-
-// showMyDB(personalMovieDB.privat);
 
 
 
@@ -375,11 +375,11 @@
 // console.log(counter);
 
 
-const arriv = [1, 2, 3, 4, 8];
+// const arriv = [1, 2, 3, 4, 8];
 
-arriv.forEach(function(item, i, arriv) {
-	console.log(`${i}: ${item} внутри массива ${arriv}`);
-});
+// arriv.forEach(function(item, i, arriv) {
+// 	console.log(`${i}: ${item} внутри массива ${arriv}`);
+// });
 
 // arriv.pop();
 // arriv.push(10);
@@ -477,49 +477,77 @@ arriv.forEach(function(item, i, arriv) {
 // const num = [2, 5, 7];
 // log (...num);
 
-const array = ['a', 'b'];
+// const array = ['a', 'b'];
 
-const newArray = [...array];
+// const newArray = [...array];
 
-console.log(newArray);
+// console.log(newArray);
 
-const q = {
-	one: 1,
-	two: 2,
-	three: {
-		four: 4
-	}
-};
+// const q = {
+// 	one: 1,
+// 	two: 2,
+// 	three: {
+// 		four: 4
+// 	}
+// };
 
-const newObj = {...q};
-console.log(newObj);
-
-
-
-const baseCurrencies = ['USD', 'EUR'];
-const additionalCurrencies = ['UAH', 'RUB', 'CNY'];
-
-function availableCurr(arr, missingCurr) {
-	let str = '';
-	arr.length === 0 ? str = 'Нет доступных валют' : str = 'Доступные валюты:\n';
-
-	arr.forEach(function(curr) {
-		if (curr !== missingCurr) {
-			str += `${curr}\n`;
-		}
-	});
-
-	// Или
-	// for (let i = 0; i < arr.length; i++) {
-	//     if (arr[i] === missingCurr) {
-	//         continue;
-	//     }
-	//     str += `${arr[i]}\n`;
-	// }
-
-	return str;
-}
+// const newObj = {...q};
+// console.log(newObj);
 
 
 
-console.log(availableCurr([...baseCurrencies, ...additionalCurrencies], 'CNY'));
+// const baseCurrencies = ['USD', 'EUR'];
+// const additionalCurrencies = ['UAH', 'RUB', 'CNY'];
+
+// function availableCurr(arr, missingCurr) {
+// 	let str = '';
+// 	arr.length === 0 ? str = 'Нет доступных валют' : str = 'Доступные валюты:\n';
+
+// 	arr.forEach(function(curr) {
+// 		if (curr !== missingCurr) {
+// 			str += `${curr}\n`;
+// 		}
+// 	});
+
+// Или
+// for (let i = 0; i < arr.length; i++) {
+//     if (arr[i] === missingCurr) {
+//         continue;
+//     }
+//     str += `${arr[i]}\n`;
+// }
+
+// 	return str;
+// }
+
+
+
+// console.log(availableCurr([...baseCurrencies, ...additionalCurrencies], 'CNY'));
+
+
+
+// let i = 2;
+
+// while (i <= 16) {
+// 	if (i % 2 === 0) {
+// 		i++;
+// 		continue;
+		
+// 	}
+// 	else {
+// 		console.log(i);
+// 		i++;
+// 	}
+	
+// }
+
+
+
+// let newArr = [3, 'jfndjfg', 7, 8];
+// let result = [];
+
+// for (let i = 1; i <= newArr.length; i++) {
+//  result[i - 1] = newArr[newArr.length - i]
+// }
+
+// console.log(result);
