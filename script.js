@@ -552,53 +552,75 @@
 
 // console.log(result);
 
-const shoppingMallData = {
-	shops: [
-		{
-			width: 10000,
-			length: 5
-		},
-		{
-			width: 15,
-			length: 7
-		},
-		{
-			width: 20,
-			length: 5
-		},
-		{
-			width: 8,
-			length: 10
-		}
-	],
-	height: 5,
-	moneyPer1m3: 30,
-	budget: 50000
-};
+// const shoppingMallData = {
+// 	shops: [
+// 		{
+// 			width: 10000,
+// 			length: 5
+// 		},
+// 		{
+// 			width: 15,
+// 			length: 7
+// 		},
+// 		{
+// 			width: 20,
+// 			length: 5
+// 		},
+// 		{
+// 			width: 8,
+// 			length: 10
+// 		}
+// 	],
+// 	height: 5,
+// 	moneyPer1m3: 30,
+// 	budget: 50000
+// };
 
-function isBudgetEnough(data) {
-	let money = 0;
-	let square = 0;
-	let volume = 0;
+// function isBudgetEnough(data) {
+// 	let money = 0;
+// 	let square = 0;
+// 	let volume = 0;
 
   
-	data.shops.forEach(shop => {
-		square += shop.width + shop.length;
-	});
+// 	data.shops.forEach(shop => {
+// 		square += shop.width + shop.length;
+// 	});
 
-	volume = data.height * square;
+// 	volume = data.height * square;
 
-	money = volume * data.moneyPer1m3; 
+// 	money = volume * data.moneyPer1m3; 
 
 
-	if (data.budget >= money) {
-		console.log('Бюджета достаточно');
-	} else {
-		console.log('Бюджета недостаточно');
+// 	if (data.budget >= money) {
+// 		console.log('Бюджета достаточно');
+// 	} else {
+// 		console.log('Бюджета недостаточно');
+// 	}
+
+
+
+// }
+
+// isBudgetEnough(shoppingMallData);
+
+
+const students = ['Peter', 'Andrew', 'Ann', 'Mark', 'Josh', 'Sandra', 'Mark', 'Josh', 'Sandra', 'Cris', 'Bernard',  'Sam'];
+
+function sortStudentsByGroups(arr) {
+	arr.sort();
+	const a = [], b = [], c = [], rest = [];
+
+	for (let i = 0; i < arr.length; i++) {
+		if (i < 3) {
+			a.push(arr[i]);
+		} else if (i < 6) {
+			b.push(arr[i]);
+		} else if (i < 9) {
+			c.push(arr[i]);
+		} else {
+			rest.push(arr[i]);
+		}
 	}
-
-
-
+	return [a,b,c, `Оставшиеся студенты: ${rest.length === 0 ? '-' : rest.join(', ')}`];
 }
-
-isBudgetEnough(shoppingMallData);
+console.log(sortStudentsByGroups(students));
